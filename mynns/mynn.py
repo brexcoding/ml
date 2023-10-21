@@ -1,10 +1,9 @@
 import numpy as np
 
-
 X = [
-    [1 , 2 , 3, 2.5],
-    [2.0 , 5.0 , -1.0 , 2.0],
-    [-1.5 , 2.7 , 3.3 , -0.8]
+    [1 , 2 , 3, 4],
+    [6 , 7 , 8 , 9],
+    [10 , 11 , 12 , 13]
 ]
 
 class Layer_Dense:
@@ -33,9 +32,17 @@ activation2 = Activation_Softmax()
 layer1 = Layer_Dense(4,5)
 layer2 = Layer_Dense(5,2)
 
+# the first layer with the relue ACTIVATION FUNCTION 
 layer1.forward(X)
 activation1.forward(layer1.output)
-
 layer1_outputs = activation1.output
 
-print(layer_outputs)
+# the second layer with the SOFTMAX activation function 
+layer2.forward(layer1_outputs)# passing the layer 1 outputs into the second dense layer 
+activation2.forward(layer2.output)
+layer2_outputs = activation2.output
+
+print( 'layer 2 -----> outputs ',layer2_outputs)
+print('the layer 2 shape ------> '   , layer2_outputs.shape)
+
+
