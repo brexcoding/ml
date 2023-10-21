@@ -1,5 +1,14 @@
 {
     "workbench.colorCustomizations": {
         "terminal.foreground": "#00FF00"
+    },
+    "editor.tokenColorCustomizations":{
+        "comments": "#908686",
+        "variables": "#b22ceb",
+        "functions": "#00FF00",
+        "numbers": "#f21e1e",
+        "keywords": "#8a57ef",
+        "types": "#f2504a",
+        
     }
 }
