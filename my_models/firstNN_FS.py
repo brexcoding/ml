@@ -8,7 +8,7 @@ def sigmoid(x):
 
 # Define the derivative of the activation function
 def sigmoid_derivative(x):
-  return x * (1 - x)
+    return x * (1 - x)
 
 # Define the number of input, hidden and output nodes
 input_nodes = 3
@@ -32,24 +32,24 @@ y = pd.DataFrame([[0, 0], [0, 1], [1, 0], [1, 1]]) # output labels
 epochs = 10000
 for epoch in range(epochs):
   
-  # Feedforward the input data through the network
-  input_layer = X
-  hidden_layer = sigmoid(np.dot(input_layer, weights_ih) + bias_h)
-  output_layer = sigmoid(np.dot(hidden_layer, weights_ho) + bias_o)
+    # Feedforward the input data through the network
+    input_layer = X
+    hidden_layer = sigmoid(np.dot(input_layer, weights_ih) + bias_h)
+    output_layer = sigmoid(np.dot(hidden_layer, weights_ho) + bias_o)
 
-  # Calculate the error between the predicted output and the actual output
-  error_output = y - output_layer
-  error_hidden = np.dot(error_output, weights_ho.T)
+      # Calculate the error between the predicted output and the actual output
+    error_output = y - output_layer
+    error_hidden = np.dot(error_output, weights_ho.T)
 
-  # Backpropagate the error and update the weights and biases using gradient descent
-  delta_output = error_output * sigmoid_derivative(output_layer)
-  delta_hidden = error_hidden * sigmoid_derivative(hidden_layer)
-  
-  weights_ho += learning_rate * np.dot(hidden_layer.T, delta_output)
-  weights_ih += learning_rate * np.dot(input_layer.T, delta_hidden)
-  
-  bias_o += learning_rate * np.sum(delta_output, axis=0)
-  bias_h += learning_rate * np.sum(delta_hidden, axis=0)
+      # Backpropagate the error and update the weights and biases using gradient descent
+    delta_output = error_output * sigmoid_derivative(output_layer)
+    delta_hidden = error_hidden * sigmoid_derivative(hidden_layer)
+      
+    weights_ho += learning_rate * np.dot(hidden_layer.T, delta_output)
+    weights_ih += learning_rate * np.dot(input_layer.T, delta_hidden)
+      
+    bias_o += learning_rate * np.sum(delta_output, axis=0)
+    bias_h += learning_rate * np.sum(delta_hidden, axis=0)
 
 # Print the final output after training
 print("Final output after training:")

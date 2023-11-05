@@ -1,0 +1,78 @@
+---> we will be  using the model to predict if the next prices are going to
+ be crossing the ma 20 down or up indicating the death of the trend
+   as a exit point , after we put a far tp in case something happens to the 
+   VM 
+
+
+
+the problem that i want to solve is a regression problem 
+---> so the MSE (mean squared error) loss function will be a nice choice 
+---> and beside it i will chose the adam optimizer
+
+-------------------------breaking down test.py code -----------------
+we have a layer dense that is connected to the relue activation function and the output 
+of the first layer is going to be the input of the second layer that is activated with the 
+SOFTMAX function 
+----> now i got to check the data type of the input and try to mimic this to my dataframe
+______ > the type is a list , noe how can i turn it to a dataframe , or make the layer dense
+take dataframe data instead of a list 
+first of all i will split the data and turn it into csv files 
+
+i got to know how to pass the data threw the layers in order to train the model
+first of all what are the functions that i need to train the model with 
+
+so i have a relu and SOFTMAX that i can connect to the dense layer to structure
+a lstm or a simple neural network 
+but the trainung is something different because i need in this problem the adam 
+optimizer for the sake of making the weights and biases in the perfect fit to 
+make more greate predictions 
+
+so ..
+i need to know how to train the model 
+and one of the functions that i will need in place is the adam optimizer 
+... need to split the data so i can feed it to the model and of course this is 
+different in what i want to predict so i might do some changes in the dense layer
+---> they feed the data in model as numpy layers .... means that im going to push 
+OHLC data as seperate arrays 
+
+
+-----> now the problem is how can build the model
+ so i can pass it threw the optimizer , and its returned in the train_model funcion
+
+i turned my dataframe into numpy arrays 
+but now how can i pass the features threw the lstm
+----------------------------------------------------------------------
+i should use i MinMaxScaler instead of the softmax activation 
+because the problem is not classification
+
+------------------------ starting the data feeding into the layers ----------------
+
+
+this are the last values 
+
+296,1.07704
+297,1.077
+298,1.07686
+299,1.07665
+
+------------------------- the problem with the data feed is i dont realy know how i can 
+ select the predicted data 
+first thing im going to compare between s and the close prices nupy arrays
+---- basicaly they are different s is a matrix and the close prices are a numpy array
+
+so first im going to tweek s to make it an array and see what will happen
+s = [
+  [1 , 2 , 3, 4],
+  [6 , 7 , 8 , 9],
+  [10 , 11 , 12 , 13]
+]
+so it will be liike this 
+
+s = [
+  [1 , 2 , 3, 4],
+]
+
+the shape is (1,4) means i still oing to pass 4 as the input number in the layer
+so i can replace it with   s.shape[1]
+the problem is my numpy array is not the same shape , so i need to transpose it 
+so we get (the inputs * the weights )

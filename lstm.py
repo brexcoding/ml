@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import math
 import numpy as np
 import pandas as pd
@@ -20,7 +19,7 @@ dataset = data.values
 train_data_lengh = math.ceil(len(dataset)*.8)
 train_data_lengh
 
-#scale the data
+#scale the data 
 scaler = MinMaxScaler(feature_range=(0 ,1 ))
 scaled_data = scaler.fit_transform(dataset)
 scaled_data
