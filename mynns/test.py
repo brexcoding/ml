@@ -7,9 +7,7 @@ np.random.seed(0)
 X = pd.read_csv('tf_models/Close')
 # transformed the dataframe into a numpy array
 X = X.values
-# X = [
-#   [1 , 2 , 3, 4],# i can put the open here 
-# ]
+
 
 
 class Layer_Dense:
@@ -20,6 +18,7 @@ class Layer_Dense:
         self.output = np.dot(inputs,self.weights)+self.biases
 
 # making the relue activation function with numpy 
+# that takes a numpy array of data and returns a numpy array
 class Relu_Activation:
     def forward(self , inputs):
         self.output = np.maximum(0, inputs)
@@ -37,7 +36,7 @@ def mse(y_true, y_pred):
     y_true: A NumPy array of true values.
     y_pred: A NumPy array of predicted values.
 
-  Returns:
+  Returns: 
     A float representing the mean squared error.
   """
   errors = y_true - y_pred
@@ -46,26 +45,6 @@ def mse(y_true, y_pred):
   return mse
 
 
-class AdamOptimizer:
-  def __init__(self, learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8):
-    self.learning_rate = learning_rate
-    self.beta1 = beta1
-    self.beta2 = beta2
-    self.epsilon = epsilon
-
-    self.m = 0
-    self.v = 0
-
-  def update(self, gradients):
-    self.m = self.beta1 * self.m + (1 - self.beta1) * gradients
-    self.v = self.beta2 * self.v + (1 - self.beta2) * gradients**2
-
-    m_hat = self.m / (1 - self.beta1**0.5)
-    v_hat = self.v / (1 - self.beta2**0.5)
-
-    updated_gradients = m_hat / (np.sqrt(v_hat) + self.epsilon)
-
-    return updated_gradients
 
 def train_model(model, X_train, y_train, num_epochs=100, learning_rate=0.01):
   """Trains a neural network model using the Adam optimizer.
@@ -80,7 +59,6 @@ def train_model(model, X_train, y_train, num_epochs=100, learning_rate=0.01):
   Returns:
     The trained model.
   """
-
   optimizer = AdamOptimizer(learning_rate=learning_rate)
 
   for epoch in range(num_epochs):
@@ -111,7 +89,7 @@ layer2 = Layer_Dense(5,2)
 layer1.forward(X)
 activation1.forward(layer1.output)
 layer1_outputs = activation1.output
-print("layer 1 ",layer1_outputs)
+
 # the second layer with the SOFTMAX activation function 
 layer2.forward(layer1_outputs)# passing the layer 1 outputs into the second dense layer 
 activation2.forward(layer2.output)
@@ -139,3 +117,4 @@ print('Loss:', loss)
 
 # Train the model.
 # model = train_model(model, X_train, y_train)
+
