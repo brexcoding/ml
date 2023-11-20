@@ -8,7 +8,7 @@ from keras.layers import Dense  ,LSTM
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
-data = pd.read_csv('GBPUSD')
+data = pd.read_csv('EURUSD')
 data.shape
 
 #Cretung a new dataframe with only the close

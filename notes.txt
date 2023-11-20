@@ -134,3 +134,187 @@ add the plot of the predicted values to the plot with different color
 add the real values of the ma20 that i had cutted from the df 
  now i got to plot the new ma values by making the data above as a new dataframe
  
+ -- iploted my data after using the sgd and it was bad
+  so im trying to use another set of data now 
+
+i tried the SGD model with a large  data like almost 5000 row 
+and i got a explosion(overfitting) of data with negative values .. 
+(ml) C:\Users\abdel\Desktop\venvs\ml\root\linear_regression>py sgd.py
+         __             __           __
+   _____/ /_____ ______/ /____  ____/ /
+  / ___/ __/ __ `/ ___/ __/ _ \/ __  /
+ (__  ) /_/ /_/ / /  / /_/  __/ /_/ /
+/____/\__/\__,_/_/   \__/\___/\__,_/
+
+-------- X_train ---- [[159.858 159.813 159.871 159.797]
+ [159.794 159.855 159.869 159.791]
+ [159.828 159.792 159.838 159.787]
+ ...
+ [159.805 159.819 159.828 159.794]
+ [159.831 159.804 159.833 159.786]
+ [159.8   159.824 159.826 159.777]]
+this is y train  [159.86675 159.8727  159.8764  ... 159.74565 159.75335 159.7574 ] and this is the shape of y train  (4403,)
+the model is trained , and this is the predicted data
+[-4.72748820e+14 -4.72612241e+14 -4.71623342e+14 -4.71586861e+14
+ -4.71727466e+14 -4.72037695e+14 -4.72013901e+14 -4.72088022e+14
+ -4.72140053e+14 -4.72183825e+14 -4.72218771e+14 -4.72263018e+14
+ -4.72296837e+14 -4.72351248e+14 -4.72400968e+14 -4.72416941e+14
+ -4.72432419e+14 -4.72513314e+14 -4.72588961e+14 -4.72511841e+14
+ -4.72485703e+14]
+
+
+ ---------------------------------------------------
+ but when i try to predict symbols like EURUSD or EURJPY ..
+ igot ideal prices and no overfitting ...... last test was realy near 
+
+ (ml) C:\Users\abdel\Desktop\venvs\ml\root\linear_regression>py sgd.py
+         __             __           __
+   _____/ /_____ ______/ /____  ____/ /
+  / ___/ __/ __ `/ ___/ __/ _ \/ __  /
+ (__  ) /_/ /_/ / /  / /_/  __/ /_/ /
+/____/\__/\__,_/_/   \__/\___/\__,_/
+
+-------- X_train ---- [[1.51797 1.51732 1.51814 1.51723]
+ [1.51743 1.51798 1.51819 1.51743]
+ [1.51677 1.51744 1.51795 1.51594]
+ ...
+ [1.46755 1.46768 1.46774 1.46723]
+ [1.46711 1.46761 1.46761 1.46711]
+ [1.46681 1.46711 1.46715 1.46681]]
+this is y train  [1.51732 1.51798 1.51744 ... 1.46768 1.46761 1.46711] and this is the shape of y train  (27915,)
+the model is trained , and this is the predicted data
+[1.46967917 1.46954091 1.46942296 1.46953406 1.46961567 1.46970186
+ 1.46968599 1.46956811 1.46941161 1.46934814 1.46940709 1.46934134
+ 1.46937536 1.46951592 1.46982429 1.47012133 1.4704501  1.4705476
+ 1.47049999 1.47050001 1.47033221 1.47034127 1.4704093  1.47060882
+ 1.47079703 1.47091492 1.47078575 1.47058389 1.47084915 1.47099429
+ 1.47121649 1.47146594 1.47139108 1.47136388 1.47124373 1.47127091
+ 1.4715498  1.47161106 1.47107601 1.47106003 1.47135254 1.47149992
+ 1.47171082 1.47190812 1.47147051 1.4713752  1.47147951 1.47169263
+ 1.47188992 1.4719194  1.4721824  1.47228898 1.47223006 1.47200559
+ 1.47199875 1.47209173 1.47191714 1.47191031 1.47188993 1.47191486
+ 1.47191941 1.47176748 1.47154534 1.47134798 1.47150218 1.47152258
+ 1.47164502 1.47154756 1.47145005 1.47143414 1.47144548 1.4714795
+ 1.47152484 1.47140018 1.47131171 1.47128676 1.4711757  1.47116659
+ 1.47125048 1.47138655 1.47146136 1.47161327 1.47166544 1.47139345
+ 1.47088318]
+--------------------------------------------------------
+
+# Prepare the new data
+new_data = np.array([1.08388 , 1.99965 ,1.48433 ,1.34435])
+# Reshape the new data
+reshaped_data = new_data.reshape(-1, 1)
+
+print(reshaped_data)
+
+down bellow is the result of reshaping data
+
+(ml) C:\Users\abdel\Desktop\venvs\ml\root\linear_regression>py LR.py
+[[1.08388]
+ [1.99965]
+ [1.48433]
+ [1.34435]]
+
+-------- %%%% in some of my linear regression models
+ i should add the volume as a feature
+_________________________________________________________________________________________
+data spliting notes 
+_________________________________________________________________________________________
+>>> import pandas as pd
+>>> from sklearn.model_selection import train_test_split
+>>>
+>>> # Create a DataFrame
+>>> df = pd.DataFrame({'feature1': [1, 2, 3, 4, 5],
+...                    'feature2': [6, 7, 8, 9, 10],
+...                    'label': ['A', 'B', 'C', 'D', 'E']})
+>>>
+>>> # Print the DataFrame
+>>> print(df)
+   feature1  feature2 label
+0         1         6     A
+1         2         7     B
+2         3         8     C
+3         4         9     D
+4         5        10     E
+>>> from sklearn.model_selection import train_test_split
+>>>
+>>> X = df[['feature1', 'feature2']]
+>>> y = df['label']
+>>>
+>>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+>>>
+>>> print(X_train)
+   feature1  feature2
+2         3         8
+0         1         6
+3         4         9
+>>> print(X_test)
+   feature1  feature2
+1         2         7
+4         5        10
+>>> print(y_train)
+2    C
+0    A
+3    D
+Name: label, dtype: object
+>>> print(y_test) # the y_test is not our prediciond ,its just for evaluating the model
+1    B
+4    E
+Name: label, dtype: object
+>>>
+
+
+_________________________________________________________________________________________
+lstm notes " the steps "
+_________________________________________________________________________________________
+- importing libraries 
+- reading data 
+- checking the shape 
+- filtering data  to get only the close 
+- converting it to numpy arrays 
+- spliting the dataset for training
+- passing the data threw the MinMaxScaler
+- selecting the scaled data to train 
+- storing the scaled  X_train and y_train in lists
+- converting X_train and y_train to np.array
+- we convert the data 'x_train' to 3d shape (x , y, z) 
+- we start building the model , which is sequential
+- compiling the model 
+- trining the modelmodel.fit(x_train , y_train , batch_size=1 , epochs=1)
+- creating the test data with the scaled data
+- reshping the test data to 3d 
+- strating to predict by passing the x_test in the model and scaling the predictions
+- calculating the error with the RMSE 
+- ploting the data 
+- saving the model
+-----------> ***** now after we saves the model we need to load and use it ******
+and to do this im planing to 
+- download new data
+- and i got to know how to input the data to the model and 
+?? what is the shape of the data and also if i should scale it or not
+ i mean by that im i going to treat it like the x_test
+---> I will start by scaling the data , and ai think that the data should be treated
+like the x_test and y_test . 
+% begin ....
+first filter data ..only close 
+and then turning it to np arrays
+spliting the data to test and train , but wait why i just
+need to know the shape of the input and feed it to the model and we are Done 
+-- allright so the data that we will be passing is the same as the 
+x_test and thats why we should know what we did to the data so we got 
+the x_test , for instance dow we have to split the data and then scale 
+it , reshape it  and then we pass it ,then maybe we will calculate loss
+and plot the predictions
+||||||||||||||||||  -------------------------------------
+so i loaded the model 
+and the data  and filtered this data to get only the close 
+and then converted this data to np arrays
+spliting the data ????? idont think this is important
+scaling the data 
+reshaping the data 
+
+
+
+
+
+

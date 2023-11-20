@@ -13,8 +13,8 @@ mt5.login(
    password="Khawla1232020.",      
    server="XMGlobal-MT5 2",         
 )
-symbol = 'GBPUSD'
-data = mt5.copy_rates_from_pos(symbol, mt5.TIMEFRAME_M3, 0,   90000)
+symbol = 'EURUSD'
+data = mt5.copy_rates_from_pos(symbol, mt5.TIMEFRAME_M3, 0,   9000)
 data = pd.DataFrame(data)
 
 
@@ -23,8 +23,6 @@ data = data.rename(columns={"time": "Time", "open": "Open" , "high": "High",
 
 data = data.to_csv(symbol)
 print("done fetching historical data for the symbol--->",symbol)
-
-
 
 data['sma_20'] = ta.SMA(data['Close'], timeperiod=20)
 data['sma_200'] = ta.SMA(data['Close'], timeperiod=200)

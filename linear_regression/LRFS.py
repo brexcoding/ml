@@ -13,7 +13,7 @@ def loss_function(m , b , data) :# MSE
     total_error = 0 
     for i in range(len(data)):
         x  = data.iloc[i].Close
-        y  = data.iloc[i].sma_20
+        y  = data.iloc[i].Close
         total_error += (y - (m*x+b))**2
     total_error / float(len(data))
 
@@ -24,7 +24,7 @@ def gradient_descent(m_now , b_now , data , L):# the optimization algorithm
     n = len(data)
     for i in range(n):
         x  = data.iloc[i].Close
-        y  = data.iloc[i].sma_20
+        y  = data.iloc[i].Close
 
         m_gradient += -(2/n) * x * (y - (m_now * x * b_now))
         b_gradient += -(2/n) * (y - (m_now * x * b_now))
@@ -33,13 +33,13 @@ def gradient_descent(m_now , b_now , data , L):# the optimization algorithm
     b = b_now - b_gradient * L 
     return   m , b 
 
-m = 0 
-b = 0 
-L = 0.00001 # learning rate is good for training
-epochs = 150
+m = 1
+b = 1
+L = 0.001 # learning rate is good for training
+epochs = 55
 
 for i in range(epochs):
-    if i % 10 == 0 :
+    if i % 0.5 == 0 :
         print(f'======> Epoch :  {i}')
  
 

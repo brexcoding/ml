@@ -1,7 +1,7 @@
 ###  dv _  data visulasation 
 import plotly.graph_objects as go
 import pandas as pd
-
+import numpy as np
 
 
 df = pd.read_csv('mydata')
@@ -10,9 +10,6 @@ newdf = pd.read_csv('newdf')
 
 # Create a Plotly figure
 fig = go.Figure()
-
-
-
 
 # Add the OHLC candlesticks
 fig.add_trace(go.Candlestick(x=df['index'], open=df['Open'], high=df['High'], low=df['Low'], close=df['Close'], name='OHLC'))
@@ -23,8 +20,15 @@ fig.add_trace(go.Scatter(x=df['index'], y=df['sma_20'], name='SMA20', line=dict(
 # adding the actual vales of the sma ,to compare them with the prdicted values
 fig.add_trace(go.Scatter(x=newdf['index'], y=newdf['sma_20'], name='actual-SMA20', line=dict(color='green', width=1)))
 
-pred_ma20 = [1.07813463 , 1.07813668 ,1.07817787 ,  1.07822111 ,  1.07815522 ,1.07802961,
- 1.07801725 , 1.07807285 , 1.07807491 , 1.07800283 , 1.07794723 , 1.07786075 ,  1.07763834]
+
+
+pred_ma20 = [1.47138141 ,1.47129299 ,1.47126805 ,1.47115708 ,1.47114797, 1.47123179
+, 1.47136779 , 1.47144253 ,1.47159435 ,1.47164649]
+
+
+pred_ma20 = np.array(pred_ma20)
+
+
 # adding the actual vales of the sma ,to compare them with the prdicted values
 fig.add_trace(go.Scatter(x=newdf['index'], y= pred_ma20  , name='PRED-SMA20', line=dict(color='yellow', width=1)))
 # Set the layout of the figure

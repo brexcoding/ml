@@ -8,7 +8,7 @@ text = "data spliting started"
 print( pyfiglet.figlet_format(text ,font='basic' )  ) 
 
 
-df = pd.read_csv('EURUSD')
+df = pd.read_csv('EURAUD')
 print(df)
 
 # getting the close prices from the dataframe 
@@ -23,7 +23,7 @@ done = pyfiglet.figlet_format(T,font='isometric1')
 print(done)
 
 
-breakpoint()
+
 #spliting the data to x and y
 X = df[['Open', 'High', 'Low', 'Close']]
 y = df[['Close']]
