@@ -313,8 +313,32 @@ spliting the data ????? idont think this is important
 scaling the data 
 reshaping the data 
 
+%%% ploting the data
+using plotly is better to spot the difference between the real and predicted data
+--------------------------------------------------------------
+__________ the implementation of the lstm model in the bots ____________
+now i got to make sure that i take only the last values as input 
+so i got maybe to take the last 60 values and scale them and reshape them 
+
+so i guess we got to take the last 60 values from the data frame not as numpy arrays 
+then we scale them and reshape them ...
+
+go back to use.py and follow the steps that made them get the shape
+_______|*** the steps to get the shape of the x_test ***|__________
+- filter data to only close  "in this case "
+- convert the x_test to a numpy array
+- scaling the data 
+- defining the test_data --> test_data = scaled_data[train_data_lengh - 60: , :]
+- create the x_test ? here i assume that the x_test is the last 60 values scaled but i don't
+----- think so , i think that i should use y_test , because they are the values that the model
+------ is evaluated with after feeding the x_train
+---------------- ! note that the labels are features 
+
+_____ *** trying to get the last values and reshape them mo such x_test and y_test  *** ______
 
 
+the problem that im facing is that the shape of my input is (60 , 1 , 1) ,while the shape 
+in x_test is (1800 , 60 ,1) 
 
-
-
+or i just need to search how can i feed NEW DATA to the model instead of x_test nonsence
+% the problem is maybe i need to crate the input with for loop
