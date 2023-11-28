@@ -35,12 +35,12 @@ def gradient_descent(m_now , b_now , data , L):# the optimization algorithm
 
 m = 1
 b = 1
-L = 0.001 # learning rate is good for training
-epochs = 55
+L = 0.0001 # learning rate is good for training
+epochs =5
 
 for i in range(epochs):
-    if i % 0.5 == 0 :
-        print(f'======> Epoch :  {i}')
+    if i % 10 == 0 :
+        print(f'======> Epoch :  {i} / {epochs}')
  
 
     m,b = gradient_descent(m , b , data , L )
@@ -49,7 +49,7 @@ print(" ____m___ value is ---->" , m  )
 print("____b___ value is ---->" , b  )
 
 # Assuming you have new data in a separate DataFrame
-new_data = pd.read_csv('mydata')
+new_data = pd.read_csv('newdf')
 new_data = new_data.drop('index', axis=1)  # Dropping the index
 
 
