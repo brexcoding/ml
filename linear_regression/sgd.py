@@ -38,14 +38,19 @@ model.fit(X_train , y_train)
 accuaracy = model.score(X_test , y_test)
 
 forecast_set = model.predict(X_lately)
+forecast_set = forecast_set - 0.0230
+
+df = df._append(pd.DataFrame({
+    'Close': forecast_set
+}), ignore_index=True)
 
 print(forecast_set , accuaracy , forecast_out)
 
 plt.figure(figsize=(10, 5))
+historical_prices_len = len(df) - len(forecast_set)
+plt.plot(df['Close'].tail(len(forecast_set)), label='forecast', color='green')# ploting the predictions
+plt.plot(df['Close'].head(historical_prices_len), label='Forecast', color='red')
 
-plt.plot(df['Close'], label='Close', color='green')
-
-plt.plot(forecast_set, label='Forecast', color='red')
 
 plt.xlabel('Time')
 plt.ylabel('Value')
