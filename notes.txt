@@ -340,5 +340,26 @@ _____ *** trying to get the last values and reshape them mo such x_test and y_te
 the problem that im facing is that the shape of my input is (60 , 1 , 1) ,while the shape 
 in x_test is (1800 , 60 ,1) 
 
-or i just need to search how can i feed NEW DATA to the model instead of x_test nonsence
-% the problem is maybe i need to crate the input with for loop
+---> the model accepts data from this shape (n , 60 ,1) so i did this 
+reshaped_input_data = np.reshape(input_data , ( 1 ,input_data.shape[0] , 1))
+
+while :  input_data.shape[0] is ===> 60 ,thats why i moved it to the middle
+
+__________________*** evaluating my LR model  ***_______________________
+
+X_train and y_train are for training the model developes the parameters based on them
+X_test and y_test are for testing which made me think !!
+ to evaluate  the model based on ploting the predictions against y_test 
+after feeding the model  with X_test --> predictions = model.predict(X_test)
+
+________________ *** dataset consept  in spliting  with for loops ***___
+in the lstm.ipynb the close is considered to be feature and label
+and thats why there is a difference and a bit of a problem when i start spliting 
+the data that has multiple features 
+this problem is the dataset , and this is the flow of it in the lstm file
+- made a df , filtered it to be only the close 
+- converted it to np array
+- made a variable  ---> train_data_lengh , |||||| which is 80% from the dataset
+- took the dataset and scaled it , ||||| and called it scaled_data , for X_test and X_train probably
+- taking 80% from the scaled dataset , |||| and called it train_data
+- creating the X_train and y_train 

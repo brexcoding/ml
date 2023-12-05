@@ -11,31 +11,33 @@ from keras.layers import Dense  ,LSTM
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-model = load_model('my_hourly_model.h5')
+model = load_model('latest_model.h5')
 mt5.initialize()
 mt5.login(
    login= 66471058   ,                
    password="Khawla1232020.",      
    server="XMGlobal-MT5 2",         
 )
-symbol = 'EURUSD#'
+symbol = 'GBPUSD#'
 
 scaler = MinMaxScaler(feature_range=(0 ,1 ))
-data = mt5.copy_rates_from_pos(symbol, mt5.TIMEFRAME_H1, 0,   9000)
+data = mt5.copy_rates_from_pos(symbol, mt5.TIMEFRAME_M3, 0,   9000)
 data = pd.DataFrame(data)
+print('filtering the close ')
 data = data.filter(['close'])
+print('collecting data for the plot ')
+pltsample = mt5.copy_rates_from_pos(symbol, mt5.TIMEFRAME_H1, 0,   70)
+pltsample = pd.DataFrame(pltsample)
+pltsample = pltsample.filter(['close'])
+pltsample.to_csv('hourlydata')
+print('saved the ploting data ')
 dataset = data.values
 scaled_data = scaler.fit_transform(dataset)
 ############
-
 # the last 60 values
 input_data = scaled_data[len(scaled_data) - 60: , :]
-
-
-
 reshaped_input_data = np.reshape(input_data , (1,input_data.shape[0] , 1))
 print(reshaped_input_data.shape)
-
 
 predictions = model.predict(reshaped_input_data)
 predictions = scaler.inverse_transform(predictions)
@@ -44,6 +46,8 @@ predictions = pd.DataFrame(predictions)# (1, 10)
 # reshaping my data frame 
 predictions = predictions.T # (10, 1)
 predictions.to_csv('predictions')
+print('saved the predictions for the  plot  ')
+
 
 
 

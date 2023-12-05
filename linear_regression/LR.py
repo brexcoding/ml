@@ -6,7 +6,6 @@ from sklearn.linear_model import LinearRegression
 
 
 
-
 # Prepare the new data
 new_data = np.array([1.08388 , 1.99965 ,1.48433 ,1.34435])
 # Reshape the new data
@@ -14,7 +13,7 @@ reshaped_data = new_data.reshape(-1, 1)
 
 print(reshaped_data)
 
-breakpoint()
+
 
 data = pd.read_csv('mydata')  # load data set
 # i went to may close array it was |  ,Close   | and i turned it into -->| index,Close |
