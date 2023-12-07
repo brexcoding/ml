@@ -45,6 +45,8 @@ model = load('model.joblib')
 
 accuaracy = model.score(X_test , y_test)
 forecast_set = model.predict(X_lately)
+
+
 # deleting the last close vlaues that match the len of forecast_set ,so i can replace it with forecast_set 
 df_without_the_last_values_with_pred_len = df.iloc[:-len(forecast_set)] 
 new_df = pd.concat([df_without_the_last_values_with_pred_len, pd.DataFrame(forecast_set, columns=["Close"])], ignore_index=True)
