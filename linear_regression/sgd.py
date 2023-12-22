@@ -13,17 +13,15 @@ from sklearn.linear_model import SGDRegressor
 from joblib import  load
 
 df = pd.read_csv('hourly_EURUSD')
-df = df[['Open', 'High' , 'Low' , 'Close' , 'tick_volume','real_volume']]
+
 df['hl_pct']  = (df['High'] - df['Close']) /  df['Close'] * 100.0
 df['pct_change'] = (df['Close'] - df['Open']) / df['Open'] * 100.0
 
-df = df[['Close' , 'real_volume' , 'hl_pct' , 'pct_change' , 'tick_volume']]
+df = df[['Close' , 'real_volume' , 'hl_pct' , 'pct_change' ]]
 forecast_col = 'Close'
 
 forecast_out = int(math.ceil(0.01 * len(df)))
 train_data_lengh = math.ceil(len(df)*.8)
-
-
 
 df['label'] = df[forecast_col] . shift(-forecast_out)
 df.dropna(inplace = True)

@@ -363,3 +363,4 @@ this problem is the dataset , and this is the flow of it in the lstm file
 - took the dataset and scaled it , ||||| and called it scaled_data , for X_test and X_train probably
 - taking 80% from the scaled dataset , |||| and called it train_data
 - creating the X_train and y_train 
+

@@ -1,0 +1,224 @@
+_______________ notes about the models performance _____________________________________________________
+model = Sequential()
+model.add(LSTM(500, return_sequences=True, input_shape=(x_train.shape[1], 5)))
+model.add(Dropout(0.2))
+model.add(LSTM(50, return_sequences=True)) # Add another LSTM layer
+model.add(Dropout(0.2))
+model.add(LSTM(50, return_sequences=False))
+
+model.add(Dense(20))
+
+name of the model ---> hello2.h5
+
+
+_________________________________________________________________________________________
+model 2 ---> the8features_model.h5 
+it takes the last 60 values of 'Open', 'High', 'Low', 'volume','spread', 'Close'
+retrained with ---> data\\EURUSD_p3.csv
+Epoch 5/5
+12315/12315 [==============================] - 3726s 303ms/step - loss: 8.8096e-05
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+another retraiin with ---> data\\EURUSD_p4.csv
+Epoch 1/5
+12315/12315 [==============================] - 3983s 323ms/step - loss: 6.5774e-05
+Epoch 2/5
+12315/12315 [==============================] - 4412s 358ms/step - loss: 6.2041e-05
+Epoch 3/5
+12315/12315 [==============================] - 4131s 335ms/step - loss: 5.6475e-05
+Epoch 4/5
+12315/12315 [==============================] - 4166s 338ms/step - loss: 4.8213e-05
+Epoch 5/5
+12315/12315 [==============================] - 4632s 376ms/step - loss: 4.9030e-05
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+another train with ----> data = pd.read_csv('data\\EURUSD_p5.csv')
+Epoch 1/5
+12315/12315 [==============================] - 4131s 335ms/step - loss: 6.9627e-05
+Epoch 2/5
+12315/12315 [==============================] - 3631s 295ms/step - loss: 6.2552e-05
+Epoch 3/5
+12315/12315 [==============================] - 3767s 306ms/step - loss: 5.6979e-05
+Epoch 4/5
+12315/12315 [==============================] - 3644s 296ms/step - loss: 5.4944e-05
+Epoch 5/5
+12315/12315 [==============================] - 3752s 305ms/step - loss: 5.2906e-05
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+another train --> with data = pd.read_csv('data\\EURUSD_p5.csv')
+----> the saved model is the8features_model2.h5
+
+Epoch 1/10
+12315/12315 [==============================] - 3765s 305ms/step - loss: 5.2065e-05
+Epoch 2/10
+12315/12315 [==============================] - 3696s 300ms/step - loss: 4.7669e-05
+Epoch 3/10
+12315/12315 [==============================] - 3677s 299ms/step - loss: 4.5405e-05
+Epoch 4/10
+12315/12315 [==============================] - 3654s 297ms/step - loss: 4.5336e-05
+Epoch 5/10
+12315/12315 [==============================] - 3665s 298ms/step - loss: 4.5192e-05
+Epoch 6/10
+12315/12315 [==============================] - 3651s 296ms/step - loss: 4.4626e-05
+Epoch 7/10
+12315/12315 [==============================] - 3659s 297ms/step - loss: 4.3040e-05
+Epoch 8/10
+12315/12315 [==============================] - 3671s 298ms/step - loss: 4.0616e-05
+Epoch 9/10
+12315/12315 [==============================] - 3663s 297ms/step - loss: 4.0579e-05
+Epoch 10/10
+12315/12315 [==============================] - 3664s 297ms/step - loss: 3.9059e-05
+
+---> another train of model = load_model('the8features_model2.h5')
+---> with data = pd.read_csv('data\\EURUSD_p7.csv')
+
+model.fit(x_train, y_train, batch_size=1, epochs=5)
+model.save('the8features_model3.h5')
+Epoch 5/5
+loss [================================] loss: 5.7226e-05
+
+--> another train with -->data = pd.read_csv('data\\EURUSD_p8.csv')
+model = load_model('the8features_model3.h5')
+model.fit(x_train, y_train, batch_size=1, epochs=8)
+model.save('the8features_model4.h5')
+Epoch 1/8
+5440/5440 [==============================] - 1973s 360ms/step - loss: 1.3874e-04
+Epoch 2/8
+5440/5440 [==============================] - 1940s 357ms/step - loss: 1.2688e-04
+Epoch 3/8
+5440/5440 [==============================] - 1942s 357ms/step - loss: 1.2306e-04
+Epoch 4/8
+5440/5440 [==============================] - 1942s 357ms/step - loss: 1.2299e-04
+Epoch 5/8
+5440/5440 [==============================] - 1937s 356ms/step - loss: 1.2192e-04
+Epoch 6/8
+5440/5440 [==============================] - 1944s 357ms/step - loss: 1.2154e-04
+Epoch 7/8
+5440/5440 [==============================] - 1950s 358ms/step - loss: 1.1914e-04
+Epoch 8/8
+5440/5440 [==============================] - 1953s 359ms/step - loss: 1.1827e-04
+
+--> another train with -->data = pd.read_csv('data\\EURUSD_p8.csv') but this time 3 epochs
+model = load_model('the8features_model4.h5')
+model.fit(x_train, y_train, batch_size=1, epochs=3)
+model.save('the8features_model5.h5')
+
+Epoch 1/3
+5440/5440 [==============================] - 2041s 375ms/step - loss: 1.1555e-04
+Epoch 2/3
+5440/5440 [==============================] - 1986s 365ms/step - loss: 1.1218e-04
+Epoch 3/3
+5440/5440 [==============================] - 1990s 366ms/step - loss: 1.1244e-04
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+late on i will be testing new models and see what is the best one what gives the best loss in short time 
+i want 
+
+
+(ml) C:\Users\abdel\Desktop\venvs\ml\root\models>py Bidirectional.py
+(5480, 20, 3)
+(5480, 20, 1)
+2023-12-19 19:29:57.740192: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE SSE2 SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Epoch 1/5
+548/548 [==============================] - 310s 492ms/step - loss: 0.0065
+Epoch 2/5
+548/548 [==============================] - 481s 877ms/step - loss: 0.0021
+Epoch 3/5
+548/548 [==============================] - 411s 750ms/step - loss: 0.0014
+Epoch 4/5
+548/548 [==============================] - 371s 678ms/step - loss: 0.0011
+Epoch 5/5
+548/548 [==============================] - 190s 346ms/step - loss: 8.8178e-04
+
+
+(ml) C:\Users\abdel\Desktop\venvs\ml\root\models>py tl.py      
+(5480, 20, 3)
+(5480, 20, 1)
+2023-12-19 19:35:04.780331: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE SSE2 SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Epoch 1/5
+548/548 [==============================] - 343s 478ms/step - loss: 0.0040
+Epoch 2/5
+ 89/548 [===>..........................] - ETA: 3:15 - loss: 4.9166e-04 90/548 [===>..........................] - ETA: 3:14 - loss: 4.9481e-04548/548 [==============================] - 221s 403ms/step - loss: 4.4572e-04
+Epoch 3/5
+548/548 [==============================] - 235s 429ms/step - loss: 3.5502e-04
+Epoch 4/5
+548/548 [==============================] - 207s 377ms/step - loss: 2.8221e-04
+Epoch 5/5
+548/548 [==============================] - 215s 393ms/step - loss: 2.5157e-04
+
+
+
+(ml) C:\Users\abdel\Desktop\venvs\ml\root\models>py tl.py
+(5480, 20, 5)
+(5480, 20, 1)
+2023-12-20 11:09:45.594972: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE SSE2 SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Epoch 1/5
+5480/5480 [==============================] - 1846s 330ms/step - loss: 0.0014
+Epoch 2/5
+5480/5480 [==============================] - 1620s 296ms/step - loss: 6.5374e-04
+Epoch 3/5
+5480/5480 [==============================] - 1536s 280ms/step - loss: 4.9209e-04
+Epoch 4/5
+5480/5480 [==============================] - 1531s 279ms/step - loss: 4.4206e-04
+Epoch 5/5
+5480/5480 [==============================] - 1534s 280ms/step - loss: 3.1794e-04
+
+(ml) C:\Users\abdel\Desktop\venvs\ml\root\models>py tl.py
+(5480, 20, 5)
+(5480, 20, 1)
+2023-12-20 13:53:21.750602: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE SSE2 SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Epoch 1/5
+5480/5480 [==============================] - 1589s 281ms/step - loss: 0.0022
+Epoch 2/5
+5480/5480 [==============================] - 786s 143ms/step - loss: 9.5923e-04
+Epoch 3/5
+5480/5480 [==============================] - 696s 127ms/step - loss: 6.2628e-04
+Epoch 4/5
+5480/5480 [==============================] - 693s 126ms/step - loss: 5.0290e-04
+Epoch 5/5
+5480/5480 [==============================] - 696s 127ms/step - loss: 4.2151e-04
+--> saved as tl.h5 
+
+retrained hello3.h5 
+Epoch 1/5
+5480/5480 [==============================] - 2632s 479ms/step - loss: 3.8025e-04
+Epoch 2/5
+5480/5480 [==============================] - 2685s 490ms/step - loss: 2.9415e-04
+Epoch 3/5
+5480/5480 [==============================] - 2641s 482ms/step - loss: 2.7674e-04
+Epoch 4/5
+5480/5480 [==============================] - 1830s 334ms/step - loss: 2.7667e-04
+Epoch 5/5
+5480/5480 [==============================] - 2321s 424ms/step - loss: 2.4087e-04
+---> saved it as hello4.h5
+
