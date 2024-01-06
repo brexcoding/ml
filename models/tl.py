@@ -1,12 +1,14 @@
-## tl.py ----> i.e ,   Tweaked_LSTM.py
+## tl.py ----> i.e ,   Tweaked_LSTM.py , i added a Bidirectional layer in the first neuron
+###i want to implement the  moving averages in this model and also some patterns 
 import math
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential , load_model
-from keras.layers import Dense, LSTM ,Dropout
+from tensorflow.keras.layers import Bidirectional ,LSTM , Dropout ,Dense
+from sklearn.model_selection import train_test_split
 
-data = pd.read_csv('data\\EURUSD_p.csv')
+data = pd.read_csv('data\\EURUSD_p1.csv')
 # Extract OHLC data
 features = data[['Open', 'High', 'Low', 'volume', 'Close']]
 features
@@ -31,19 +33,26 @@ print(y_train.shape)
 
 
 model = Sequential()
-model.add(LSTM(500, return_sequences=True, input_shape=(x_train.shape[1], 5)))
+model.add(Bidirectional(LSTM(500, return_sequences=True), input_shape=(x_train.shape[1], 5)))
 model.add(Dropout(0.2))
 model.add(LSTM(50, return_sequences=True , activation="relu")) # Add another LSTM layer
 model.add(Dropout(0.2))
 model.add(LSTM(50, return_sequences=False))
 model.add(Dense(20))
 
-
-
-
 # Compile the model
 model.compile(optimizer='adam', loss='mse')
 # Train the model
-model.fit(x_train, y_train, batch_size=1, epochs=5) #  loss: 6.9001e-04
+
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, shuffle=False)
+history = model.fit(x_train, y_train, batch_size=1, epochs=10, validation_data=(x_val, y_val))
 
 model.save('tl.h5')
+
+import matplotlib.pyplot as plt
+plt.plot(history.history['loss'], label='Training Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()

@@ -112,23 +112,114 @@ Epoch 3/3
 
 
 
+--> another retrain with -- > data = pd.read_csv('data\\EURUSD_p9.csv') # i added also the validation_loss beside the train loss 
+
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, shuffle=False)
+
+history = model.fit(x_train, y_train, batch_size=1, epochs=8, validation_data=(x_val, y_val))
+model.save('the8features_model7.h5')
+
+Epoch 1/8
+4352/4352 [==============================] - 2426s 556ms/step - loss: 3.2029e-05 - val_loss: 3.1129e-05
+Epoch 2/8
+4352/4352 [==============================] - 1611s 370ms/step - loss: 3.2873e-05 - val_loss: 3.9331e-05
+Epoch 3/8
+4352/4352 [==============================] - 4567s 1s/step - loss: 3.1153e-05 - val_loss: 7.4028e-05
+Epoch 4/8
+4352/4352 [==============================] - 2268s 521ms/step - loss: 3.4435e-05 - val_loss: 4.2236e-05
+Epoch 5/8
+4352/4352 [==============================] - 1576s 362ms/step - loss: 3.0511e-05 - val_loss: 6.3023e-05
+Epoch 6/8
+4352/4352 [==============================] - 3413s 784ms/step - loss: 3.1306e-05 - val_loss: 1.8366e-04
+Epoch 7/8
+4352/4352 [==============================] - 1588s 365ms/step - loss: 3.2245e-05 - val_loss: 4.1872e-05
+Epoch 8/8
+4352/4352 [==============================] - 1583s 364ms/step - loss: 3.4488e-05 - val_loss: 3.5329e-05
 
 
+--> another retrain with data = pd.read_csv('data\\EURUSD_p11.csv')
+model = load_model('the8features_model8.h5')
+
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, shuffle=False)
 
 
+history = model.fit(x_train, y_train, batch_size=1, epochs=2, validation_data=(x_val, y_val))
+model.save('the8features_model9.h5')
+
+Epoch 1/2
+4352/4352 [==============================] - 1630s 374ms/step - loss: 1.1379e-04 - val_loss: 1.1036e-04
+Epoch 2/2
+4352/4352 [==============================] - ETA: 0s - loss: 1.0251e-04
+
+note --> i found that the best nuber of epochs is 2 in this train after that i saw overfitting since the third epoch 
+
+---> another retrain with data = pd.read_csv('data\\EURUSD_p12.csv')
+model = load_model('the8features_model9.h5')
 
 
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, shuffle=False)
+
+history = model.fit(x_train, y_train, batch_size=1, epochs=11, validation_data=(x_val, y_val))
+model.save('the8features_model10.h5')
+
+Epoch 1/11
+4352/4352 [==============================] - 1711s 392ms/step - loss: 1.3547e-04 - val_loss: 1.1516e-04
+Epoch 2/11
+4352/4352 [==============================] - 1591s 366ms/step - loss: 1.3067e-04 - val_loss: 1.1862e-04
+Epoch 3/11
+4352/4352 [==============================] - 1592s 366ms/step - loss: 1.2939e-04 - val_loss: 1.2388e-04
+Epoch 4/11
+4352/4352 [==============================] - 1592s 366ms/step - loss: 1.2627e-04 - val_loss: 1.3607e-04
+Epoch 5/11
+4352/4352 [==============================] - 1595s 367ms/step - loss: 1.2179e-04 - val_loss: 1.1417e-04
+Epoch 6/11
+4352/4352 [==============================] - 1669s 384ms/step - loss: 1.2212e-04 - val_loss: 1.1095e-04
+Epoch 7/11
+4352/4352 [==============================] - 1589s 365ms/step - loss: 1.2151e-04 - val_loss: 9.6770e-05
+Epoch 8/11
+4352/4352 [==============================] - 1586s 364ms/step - loss: 1.2229e-04 - val_loss: 9.2301e-05
+Epoch 9/11
+4352/4352 [==============================] - 1588s 365ms/step - loss: 1.2177e-04 - val_loss: 1.0516e-04
+Epoch 10/11
+4352/4352 [==============================] - 1588s 365ms/step - loss: 1.2066e-04 - val_loss: 9.5786e-05
+Epoch 11/11
+4352/4352 [==============================] - 1588s 365ms/step - loss: 1.2030e-04 - val_loss: 9.7618e-05
+
+--> another train with  data = pd.read_csv('data\\EURUSD_p13.csv')
+model = load_model('the8features_model10.h5')
+
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, shuffle=False)
+history = model.fit(x_train, y_train, batch_size=1, epochs=2, validation_data=(x_val, y_val))
+model.save('the8features_model11.h5')
+
+Epoch 1/2
+4352/4352 [==============================] - 1572s 360ms/step - loss: 1.2877e-04 - val_loss: 7.3016e-05
+Epoch 2/2
+4352/4352 [==============================] - 1493s 343ms/step - loss: 1.2784e-04 - val_loss: 6.8626e-05
+
+--> another train with  data = pd.read_csv('data\\EURUSD_p14.csv')
+
+model = load_model('the8features_model11.h5')
+
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, shuffle=False)
 
 
+history = model.fit(x_train, y_train, batch_size=1, epochs=7, validation_data=(x_val, y_val))
+model.save('the8features_model12.h5')
+
+______________________tuns out that 2 epochs are better so the train is bellow
+model = load_model('the8features_model12.h5')
+
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, shuffle=False)
 
 
+history = model.fit(x_train, y_train, batch_size=1, epochs=2, validation_data=(x_val, y_val))
+model.save('the8features_model13.h5')
 
-
-
-
-
-
-
+Epoch 1/2
+4352/4352 [==============================] - 1616s 371ms/step - loss: 5.4172e-05 - val_loss: 5.3073e-05
+Epoch 2/2
+4352/4352 [==============================] - ETA: 0s - loss: 5.4841e-05
 
 
 

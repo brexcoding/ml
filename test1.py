@@ -31,7 +31,7 @@ new_data =  np.expand_dims(new_data, axis=0)
 
 
 # loading the model 
-model = load_model('the8features_model_v2.h5')
+model = load_model('the8features_model12.h5')
 
 predictions = model.predict(new_data)
 print(predictions)

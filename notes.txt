@@ -363,4 +363,27 @@ this problem is the dataset , and this is the flow of it in the lstm file
 - took the dataset and scaled it , ||||| and called it scaled_data , for X_test and X_train probably
 - taking 80% from the scaled dataset , |||| and called it train_data
 - creating the X_train and y_train 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+I want to predict the next micro trend , "after the small pullback to the ma20"
+______________________________________(target)______________________________________________- 
+% note So the target will be a number that confirms this micro trend like 
+third close > 2ndclose > first close ------> is going to be == 100 in the next_micro_trend COLUMN
+
+1 next_micro_trend
+_____________________________________| features |__________________________________________________ 
+% note -> it might be good if I check the condition that i had in the previous bots and 
+add them as features 
+
+--> features list 
+
+1 hammer patterns 
+2 engulfing patterns 
+3 open 
+4 high 
+5 close 
+6 low
+7 sma20
+8 sma200
+9 sma estate ----> 100 bullish , -100 bearish 
+10 next_micro_trend 
